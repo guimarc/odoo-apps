@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<odoo>
+
+    <record id="pi_action" model="ir.actions.act_window">
+        <field name="name">Encrypt PI</field>
+        <field name="res_model">encrypt.pi</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+
+    <record id="view_ibm_enc_aut_tree" model="ir.ui.view">
+        <field name="name">ibm.encripted.tree</field>
+        <field name="model">encrypt.pi</field>
+        <field name="arch" type="xml">
+            <tree string="IBM PI information" create="true" edit="true" delete="false">
+                <field name="model_data_id"/>
+                <field name="field_name"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="model_automated_list_action" model="ir.actions.server">
+        <field name="name">Create the SQL scripts  </field>
+        <field name="model_id" ref="model_encrypt_pi"/>
+        <field name="binding_model_id" ref="model_encrypt_pi"/>
+        <field name="binding_view_types">form,list</field>
+        <field name="state">code</field>
+        <field name="code">action = records.replace_pi()</field>
+    </record>
+
+    <record id="model_automated_list_action" model="ir.actions.server">
+        <field name="name">Create SQL encrypt and decrypt scripts </field>
+        <field name="model_id" ref="model_encrypt_pi"/>
+        <field name="binding_model_id" ref="model_encrypt_pi"/>
+        <field name="binding_view_types">form,list</field>
+        <field name="state">code</field>
+        <field name="code">action = records.create_sql_script()</field>
+    </record>
+
+
+    <menuitem name="Encrypt PI" id="encript_menu"
+              web_icon="encrypt_pi_data,static/description/icon.png"
+              sequence="10"/>
+    <menuitem name="Encrypt PI" id="encripted_act_menu" parent="encript_menu" action="pi_action" sequence="1"/>
+</odoo>

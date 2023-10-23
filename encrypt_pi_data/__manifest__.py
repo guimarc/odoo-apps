@@ -19,4 +19,5 @@
     'installable': True,
     'auto_install': False,
     'application': False,
+    "images": ["images/screen.png"],
 }

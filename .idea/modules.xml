@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/odoo-apps.iml" filepath="$PROJECT_DIR$/odoo-apps.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/odoo-apps.iml" filepath="$PROJECT_DIR$/.idea/odoo-apps.iml" />
     </modules>
   </component>
 </project>

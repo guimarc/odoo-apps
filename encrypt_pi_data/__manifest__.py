@@ -10,6 +10,7 @@
                     Personal Information""",
     'author': "Guilherme Marcondes",
     'maintainer': 'Guilherme Marcondes, guilhermemarcondes4@msn.com',
+    'website': "https://github.com/guimarc/odoo-apps",
     'category': 'Tools',
     'data': [
         'security/ir.model.access.csv',

@@ -1,11 +1,11 @@
-Create SQL Scripts for Encrypt and Decrypt  Personal Information
+Add Edit Button
 ==================================================================================
-* "Create SQL Scripts for Encrypt and Decrypt  Personal Information
+* Add Edit Button
 
 Installation
 ============
-	- www.odoo.com/documentation/16.0/setup/install.html
-	- Install our custom addon
+	- www.odoo.com/documentation/17.0/setup/install.html
+	- Install our custom addons
 	- How to use:
 	  Go to the Model select the model/fields you want to encrypt the data and run the method via action
 
@@ -20,7 +20,7 @@ General Public License, Version 3 (LGPL v3).
 Credits
 -------
 * Developer:
-(v16) Guilherme Marcondes
+(v17) Guilherme Marcondes
 
 
 Contacts

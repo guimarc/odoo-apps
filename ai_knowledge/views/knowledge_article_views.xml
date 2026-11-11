@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="knowledge_article_view_form_inherit" model="ir.ui.view">
+            <field name="name">knowledge.article.view.form</field>
+            <field name="model">knowledge.article</field>
+            <field name="inherit_id" ref="knowledge.knowledge_article_view_form"/>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <xpath expr="//div[hasclass('o_knowledge_more_options_panel')]" position="replace">
+                <div class="o_knowledge_more_options_panel dropdown-menu" role="menu"
+                     aria-labelledby="dropdown_tools_panel">
+                    <div>
+                        <a role="button" class="dropdown-item btn-move" t-on-click="save">
+
+                            <i class="fa fa-save"/> Save Document
+                        </a>
+                        <a role="button" class="dropdown-item btn-move" t-on-click="onMoveArticleClick"
+                           attrs="{'invisible': ['|', '|', ('user_can_write', '=', False), ('active', '=', False), ('is_article_item', '=', True)]}">
+                            <i class="fa fa-fw fa-lg fa-angle-double-right"/> Move To
+                        </a>
+                        <button class="dropdown-item btn-lock" href="#" type="object" name="action_set_lock"
+                                attrs="{'invisible': ['|', '|', ('user_can_write', '=', False), ('is_locked', '=', True), ('active', '=', False)]}">
+                            <i class="fa fa-fw fa-lg fa-lock"/> Lock
+                        </button>
+                        <a  role="button" class="dropdown-item btn-lock" href="#" type="object"
+                            name="action_set_unlock"
+                            attrs="{'invisible': ['|', '|', ('user_can_write', '=', False), ('is_locked', '=', False), ('active', '=', False)]}">
+                            <i class="fa fa-fw fa-lg fa-unlock"/> Unlock
+                        </a>
+                        <button class="dropdown-item" type="object" name="action_send_to_trash"
+                                attrs="{'invisible': ['|', ('user_can_write', '=', False), ('active', '=', False)]}">
+                            <i class="fa fa-fw fa-lg fa-trash"/> Delete
+                        </button>
+                        <button class="dropdown-item" type="object" name="action_unarchive_article"
+                                attrs="{'invisible': ['|',  ('to_delete', '=', False), ('user_can_write', '=', False)]}">
+                            <i class="fa fa-fw fa-lg fa-trash-o"/> Restore from Trash
+                        </button>
+                        <button class="dropdown-item" type="object" name="action_unarchive_article"
+                                attrs="{'invisible': ['|', '|', ('user_can_write', '=', False), ('active', '=', True), ('to_delete', '=', True)]}">
+                            <i class="fa fa-fw fa-lg fa-archive"/> Unarchive
+                        </button>
+                        <a role="button" class="dropdown-item" t-on-click="copyArticleAsPrivate">
+                            <i class="fa fa-fw fa-lg fa-copy"/> Create a Copy
+                        </a>
+                        <div class="dropdown-divider" attrs="{'invisible': ['|', ('user_can_write', '=', False), ('active', '=', False)]}"/>
+                        <div class="dropdown-item user-select-none" attrs="{'invisible': ['|', ('user_can_write', '=', False), ('active', '=', False)]}"
+                             t-on-click.stop="() => this.props.record.update({full_width: !this.props.record.data.full_width})">
+                            <i class="fa fa-fw fa-lg fa-arrows-h" /> Full Width
+                            <field name="full_width" widget="boolean_toggle" force_save="1" class="my-0 mx-1"/>
+                        </div>
+                        <div class="dropdown-divider"
+                             attrs="{'invisible': [('last_edition_uid', '=', False), ('last_edition_date', '=', False)]}"/>
+                    </div>
+                    <div class="px-4 py-2 mx-1" attrs="{'invisible': [('last_edition_uid', '=', False)]}">
+                        <h6 class="small fw-bold m-0">Last Edited by:</h6>
+                        <div class="d-flex">
+                            <field name="last_edition_uid" widget="many2one_avatar_user" readonly="1" class="text-truncate"/>
+                            <span class="mx-1">-</span>
+                            <field name="last_edition_date" widget="datetime" readonly="1" class="text-nowrap"/>
+                        </div>
+                        <h6 class="small fw-bold m-0">Created by:</h6>
+                        <div class="d-flex">
+                            <field name="create_uid" widget="many2one_avatar_user" readonly="1" class="text-truncate"/>
+                            <span class="mx-1">-</span>
+                            <field name="create_date" widget="datetime" readonly="1" class="text-nowrap"/>
+                        </div>
+                    </div>
+                </div>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

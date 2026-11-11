@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+
+    <t t-name="ai_knowledge.HelpChat">
+        <div id="o_ai_kc_widget">
+
+            <!-- Chat panel (only when open) -->
+            <div t-if="state.open" class="o_ai_kc_panel">
+
+                <!-- Header -->
+                <div class="o_ai_kc_header">
+                    <span class="o_ai_kc_title">
+                        <i class="fa fa-search me-2"/>Help Knowledge
+                    </span>
+                    <button class="o_ai_kc_close" t-on-click="toggle">
+                        <i class="fa fa-times"/>
+                    </button>
+                </div>
+
+                <!-- Messages -->
+                <div class="o_ai_kc_msgs" t-ref="msgs">
+
+                    <!-- Welcome (no messages yet) -->
+                    <t t-if="state.messages.length === 0">
+                        <div class="o_ai_kc_welcome">
+                            <p class="o_ai_kc_welcome_text">
+                                Ask a question and I'll search the Knowledge articles for you.
+                            </p>
+                            <div class="o_ai_kc_chips">
+                                <t t-foreach="['How to process an order?', 'Logical container issues', 'How to rollback an order', 'Philippines order process']"
+                                   t-as="chip" t-key="chip">
+                                    <button class="o_ai_kc_chip" t-on-click="() => useSuggestion(chip)">
+                                        <t t-esc="chip"/>
+                                    </button>
+                                </t>
+                            </div>
+                        </div>
+                    </t>
+
+                    <!-- Message bubbles -->
+                    <t t-foreach="state.messages" t-as="msg" t-key="msg_index">
+                        <div t-attf-class="o_ai_kc_msg o_ai_kc_msg--#{msg.role}">
+                            <t t-if="msg.loading">
+                                <span class="o_ai_kc_dots">
+                                    <span/><span/><span/>
+                                </span>
+                            </t>
+                            <t t-elif="msg.role === 'bot'">
+                                <div t-out="msg.html"/>
+                            </t>
+                            <t t-else="">
+                                <t t-esc="msg.text"/>
+                            </t>
+                        </div>
+                    </t>
+
+                </div>
+
+                <!-- Input -->
+                <div class="o_ai_kc_input_row">
+                    <input
+                        t-ref="input"
+                        type="text"
+                        class="o_ai_kc_input"
+                        placeholder="Type your question…"
+                        t-model="state.input"
+                        t-on-keydown="onKeydown"
+                        t-att-disabled="state.busy"
+                    />
+                    <button class="o_ai_kc_send"
+                            t-on-click="send"
+                            t-att-disabled="!state.input.trim() or state.busy">
+                        <i t-if="state.busy" class="fa fa-circle-o-notch fa-spin"/>
+                        <i t-else="" class="fa fa-paper-plane"/>
+                    </button>
+                </div>
+
+            </div>
+
+            <!-- Floating trigger button -->
+            <button class="o_ai_kc_fab" t-on-click="toggle"
+                    t-att-class="state.open ? 'o_ai_kc_fab--open' : ''">
+                <t t-if="state.open">
+                    <i class="fa fa-times"/>
+                </t>
+                <t t-else="">
+                    <i class="fa fa-comments o_ai_kc_fab_icon"/>
+                    <span class="o_ai_kc_fab_label">Help Knowledge</span>
+                </t>
+            </button>
+
+        </div>
+    </t>
+
+</templates>

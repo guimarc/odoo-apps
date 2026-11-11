@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+
+    <!-- ── Upload Document Dialog ─────────────────────────────────────── -->
+    <t t-name="ai_knowledge.DocxUploadDialog">
+        <Dialog title="'Upload Document'" size="'md'">
+            <t t-set-slot="default">
+                <div class="o_ai_docx_upload_form px-1">
+
+                    <!-- File picker -->
+                    <div class="mb-3">
+                        <label class="form-label fw-bold">
+                            Select file <span class="text-muted fw-normal small">(.docx or .xlsx)</span>
+                        </label>
+                        <div class="d-flex align-items-center gap-2">
+                            <label class="btn btn-secondary btn-sm mb-0 cursor-pointer">
+                                <i class="fa fa-folder-open me-1"/>
+                                Choose file
+                                <input
+                                    t-ref="fileInput"
+                                    type="file"
+                                    accept=".docx,.xlsx,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+                                    class="d-none"
+                                    t-on-change="onFileChange"
+                                />
+                            </label>
+                            <span t-if="state.fileName" class="text-muted text-truncate small" style="max-width:260px"
+                                  t-esc="state.fileName"/>
+                            <span t-else="" class="text-muted small fst-italic">No file selected</span>
+                        </div>
+                    </div>
+
+                    <!-- Parent article -->
+                    <div class="mb-3">
+                        <label class="form-label fw-bold">
+                            Parent article <span class="text-muted fw-normal">(optional)</span>
+                        </label>
+                        <select class="form-select form-select-sm" t-model="state.parentId">
+                            <option value="">— Root of Workspace —</option>
+                            <t t-foreach="state.workspaceArticles" t-as="article" t-key="article.id">
+                                <option t-att-value="article.id" t-esc="article.label"/>
+                            </t>
+                        </select>
+                        <div class="form-text">
+                            Select a Workspace article, or leave the default to create at the root of Workspace.
+                        </div>
+                    </div>
+
+                    <!-- Error message -->
+                    <div t-if="state.error" class="alert alert-danger py-2 mb-0" t-esc="state.error"/>
+
+                </div>
+            </t>
+            <t t-set-slot="footer">
+                <button class="btn btn-primary" t-on-click="onSubmit" t-att-disabled="state.uploading">
+                    <i t-if="state.uploading" class="fa fa-circle-o-notch fa-spin me-1"/>
+                    <i t-else="" class="fa fa-upload me-1"/>
+                    <t t-if="state.uploading">Uploading…</t>
+                    <t t-else="">Upload</t>
+                </button>
+                <button class="btn btn-secondary" t-on-click="() => props.close()" t-att-disabled="state.uploading">
+                    Cancel
+                </button>
+            </t>
+        </Dialog>
+    </t>
+
+    <!-- ── Sidebar patch: inject "Upload Document" button ────────────── -->
+    <!--
+        We patch the knowledge.ArticlesTree template to add the button
+        just before "Browse Templates" inside the sticky footer div.
+    -->
+    <t t-name="ai_knowledge.ArticlesTree.patch"
+       t-inherit="knowledge.ArticlesTree"
+       t-inherit-mode="extension">
+        <xpath expr="//a[hasclass('o_knowledge_load_template_btn')]" position="before">
+            <a t-if="!state.dragging" href="#" role="button"
+                t-on-click.prevent="openDocxUploadDialog"
+                class="o_knowledge_upload_docx_btn btn btn-light d-block fw-normal text-black text-start text-truncate mb-1">
+                <i class="fa fa-fw fs-6 fa-upload me-1"/>
+                <span>Upload Document</span>
+            </a>
+        </xpath>
+    </t>
+
+</templates>

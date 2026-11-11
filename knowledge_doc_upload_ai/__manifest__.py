@@ -7,6 +7,7 @@
     'license': "LGPL-3",
     'website': "https://github.com/guimarc/odoo-apps",
     'version': '18.0.1.0.1',
+    'images': ['static/description/banner.png'],
     'depends': ['knowledge'],
     'demo': [],
     'installable': True,

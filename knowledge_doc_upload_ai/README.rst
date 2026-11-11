@@ -1,5 +1,5 @@
-AI Knowledge
-============
+AI Knowledge Doc Upload
+=========================
 
 Upload DOCX and XLSX files as Knowledge articles and search your Knowledge base with a WatsonX-powered "Help Knowledge" chat.
 

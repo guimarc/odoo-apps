@@ -1,7 +1,7 @@
 # License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl).
 
 {
-    'name': "AI Knowledge",
+    'name': "AI Knowledge Doc Upload",
     'summary': "DOCX and XLSX upload to Knowledge articles, with a WatsonX-powered Help Knowledge chat",
     'author': "Guilherme Marcondes",
     'license': "LGPL-3",

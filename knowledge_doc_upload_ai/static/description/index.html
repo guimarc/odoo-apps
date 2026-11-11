@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>AI Knowledge Doc Upload</title>
+<style>
+  body { font-family: -apple-system, "Segoe UI", system-ui, sans-serif; color: #1f2328; line-height: 1.6; margin: 0; padding: 24px; }
+  .container { max-width: 860px; margin: 0 auto; }
+  h1 { font-size: 28px; margin: 0 0 8px; }
+  h2 { font-size: 20px; border-bottom: 1px solid #e5e7eb; padding-bottom: 4px; margin-top: 32px; }
+  h3 { font-size: 16px; margin-top: 20px; }
+  .banner { width: 100%; max-width: 560px; display: block; margin: 0 auto 16px; }
+  .subtitle { color: #57606a; margin: 0 0 16px; }
+  code { background: #f7f8fa; padding: 1px 4px; border-radius: 3px; }
+  pre { background: #f7f8fa; padding: 12px; border-radius: 6px; overflow-x: auto; }
+  ol li, ul li { margin-bottom: 4px; }
+  .footer { margin-top: 40px; color: #57606a; font-size: 13px; border-top: 1px solid #e5e7eb; padding-top: 12px; }
+</style>
+</head>
+<body>
+<div class="container">
+
+<img class="banner" src="banner.png" alt="AI Knowledge Doc Upload" />
+
+<h1>AI Knowledge Doc Upload</h1>
+<p class="subtitle">Upload DOCX and XLSX files as Knowledge articles and search your Knowledge base with a WatsonX-powered "Help Knowledge" chat.</p>
+
+<h2>Features</h2>
+<ul>
+  <li>Upload a <code>.docx</code> file and it is converted into a Knowledge article (images are embedded).</li>
+  <li>Upload a <code>.xlsx</code> file and each worksheet becomes a section with its table.</li>
+  <li>Choose where the new article is placed: at the root of the Workspace, or under an existing Workspace article.</li>
+  <li>"Help Knowledge" floating chat: ask a question in natural language and get an answer built from the matching Knowledge articles, with links to the source articles.</li>
+</ul>
+
+<h2>Installation</h2>
+<ol>
+  <li>Install Odoo 18.0 and make sure the <b>Knowledge</b> app is installed.</li>
+  <li>Install the Python dependencies on the Odoo server:
+    <pre>pip install mammoth openpyxl ibm-watsonx-ai</pre>
+  </li>
+  <li>Copy the <code>knowledge_doc_upload_ai</code> folder to one of your addons paths and update the Apps list.</li>
+  <li>Install the <b>AI Knowledge Doc Upload</b> module. Existing Knowledge articles are set to <b>Full Width</b>.</li>
+</ol>
+
+<h2>Configuration (WatsonX)</h2>
+<p>The "Help Knowledge" chat uses WatsonX (watsonx.ai) to write the answers. You need an <b>API key</b> and a <b>project ID</b>.</p>
+<h3>How to get the credentials</h3>
+<ol>
+  <li><b>API key:</b> log in to IBM Cloud, go to <b>Manage &gt; Access (IAM) &gt; API keys</b>, click <b>Create</b> and copy the key. It is only shown once.</li>
+  <li><b>Project ID:</b> log in to watsonx.ai, open your project, go to the <b>Manage</b> tab and copy the <b>Project ID</b> from the <b>General</b> section.</li>
+</ol>
+<h3>Setting the values in odoo.conf</h3>
+<pre>[options]
+watson_id = &lt;your IBM Cloud API key&gt;
+project_id = &lt;your watsonx.ai project ID&gt;</pre>
+<p>Restart the Odoo server after changing the file. If either value is missing, the chat still works and returns the matching articles with a text snippet instead of a generated answer.</p>
+
+<h2>How to use</h2>
+<h3>Upload a document</h3>
+<ol>
+  <li>Open the <b>Knowledge</b> app.</li>
+  <li>In the sidebar, click <b>Upload Document</b>, above <b>Browse Templates</b>.</li>
+  <li>Select a <code>.docx</code> or <code>.xlsx</code> file.</li>
+  <li>Optionally, choose a parent Workspace article. Leave it empty to create the article at the root of the Workspace.</li>
+  <li>Click the upload button. The new article is created and opened automatically.</li>
+</ol>
+<h3>Ask the Help Knowledge chat</h3>
+<ol>
+  <li>Click the <b>Help Knowledge</b> button at the bottom right of the Knowledge app.</li>
+  <li>Type your question, or click one of the suggested questions.</li>
+  <li>The best matching articles are sent to WatsonX, which writes a short answer based only on those articles.</li>
+  <li>The answer is followed by a link to the main article and a list of other relevant articles.</li>
+</ol>
+
+<h2>License</h2>
+<p>GNU Lesser General Public License v3 (LGPL-3). <a href="https://www.gnu.org/licenses/lgpl-3.0.html">https://www.gnu.org/licenses/lgpl-3.0.html</a></p>
+
+<h2>Credits</h2>
+<p>Developer: Guilherme Marcondes (v18)</p>
+
+<h2>Bug Tracker</h2>
+<p>Bugs are tracked on <a href="https://github.com/guimarc/odoo-apps/issues">GitHub Issues</a>. Please check there if your issue has already been reported.</p>
+
+<div class="footer">Made by Guilherme Marcondes</div>
+</div>
+</body>
+</html>

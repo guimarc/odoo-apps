@@ -17,7 +17,7 @@ import { _t } from "@web/core/l10n/translation";
 // ── Upload Dialog ─────────────────────────────────────────────────────────────
 
 class DocxUploadDialog extends Component {
-    static template = "ai_knowledge.DocxUploadDialog";
+    static template = "knowledge_doc_upload_ai.DocxUploadDialog";
     static components = { Dialog };
     static props = {
         close: Function,

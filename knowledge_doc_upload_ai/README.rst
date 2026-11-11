@@ -18,7 +18,7 @@ Installation
 
     pip install mammoth openpyxl ibm-watsonx-ai
 
-* Copy the ``ai_knowledge`` folder to one of your addons paths and update the Apps list.
+* Copy the ``knowledge_doc_upload_ai`` folder to one of your addons paths and update the Apps list.
 * Install the **AI Knowledge** module.
 
   - When installed, existing Knowledge articles are set to **Full Width**.

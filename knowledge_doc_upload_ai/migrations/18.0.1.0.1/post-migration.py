@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from odoo.addons.ai_knowledge.hooks import set_all_articles_full_width
+from odoo.addons.knowledge_doc_upload_ai.hooks import set_all_articles_full_width
 
 
 def migrate(cr, version):

@@ -13,7 +13,7 @@ import { useService } from "@web/core/utils/hooks";
 
 const { onMounted, onPatched, onWillDestroy, useEffect, useRef, useState } = owl;
 
-patch(FormRenderer.prototype, 'ai_knowledge', {
+patch(FormRenderer.prototype, 'knowledge_doc_upload_ai', {
 
       async save() {
                await this.props.record.save()

@@ -14,12 +14,12 @@
     'assets': {
         'web.assets_backend': [
             # DOCX/XLSX upload
-            'ai_knowledge/static/src/xml/docx_upload.xml',
-            'ai_knowledge/static/src/js/docx_upload.js',
+            'knowledge_doc_upload_ai/static/src/xml/docx_upload.xml',
+            'knowledge_doc_upload_ai/static/src/js/docx_upload.js',
             # Knowledge AI Chat — SCSS first, then XML templates, then JS patch
-            'ai_knowledge/static/src/scss/knowledge_chat.scss',
-            'ai_knowledge/static/src/xml/knowledge_chat.xml',
-            'ai_knowledge/static/src/js/knowledge_chat.js',
+            'knowledge_doc_upload_ai/static/src/scss/knowledge_chat.scss',
+            'knowledge_doc_upload_ai/static/src/xml/knowledge_chat.xml',
+            'knowledge_doc_upload_ai/static/src/js/knowledge_chat.js',
         ],
     },
 }

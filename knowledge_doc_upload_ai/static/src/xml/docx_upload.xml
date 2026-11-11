@@ -2,7 +2,7 @@
 <templates xml:space="preserve">
 
     <!-- ── Upload Document Dialog ─────────────────────────────────────── -->
-    <t t-name="ai_knowledge.DocxUploadDialog">
+    <t t-name="knowledge_doc_upload_ai.DocxUploadDialog">
         <Dialog title="'Upload Document'" size="'md'">
             <t t-set-slot="default">
                 <div class="o_ai_docx_upload_form px-1">
@@ -70,7 +70,7 @@
         We patch the knowledge.ArticlesTree template to add the button
         just before "Browse Templates" inside the sticky footer div.
     -->
-    <t t-name="ai_knowledge.ArticlesTree.patch"
+    <t t-name="knowledge_doc_upload_ai.ArticlesTree.patch"
        t-inherit="knowledge.ArticlesTree"
        t-inherit-mode="extension">
         <xpath expr="//a[hasclass('o_knowledge_load_template_btn')]" position="before">
